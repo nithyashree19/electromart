@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProductCard from './ProductCard';
-import products from './products.jsx'; // Fixed: lowercase 'products'
+import products from './products.jsx';
 import './ProductsPage.css';
-// Import your landing page image
-import heroBackgroundImage from './assets/landPage.jpg'; // Fixed: removed '../' since it's in src
+// Use public folder path for hero image
+import heroBackgroundImage from './assets/landPage.jpg'; // Fixed path
 
 const ProductsPage = () => {
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -120,7 +120,7 @@ const ProductsPage = () => {
         )}
       </AnimatePresence>
 
-      {/* Hero Section with Your Background Image */}
+      {/* Hero Section */}
       <div className="hero-section" style={{ backgroundImage: `url(${heroBackgroundImage})` }}>
         <div className="hero-overlay"></div>
         <motion.div 
@@ -139,11 +139,17 @@ const ProductsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <button className="cta-primary" onClick={() => document.getElementById('featured-products')?.scrollIntoView({ behavior: 'smooth' })}>
+            <button 
+              className="cta-primary" 
+              onClick={() => document.getElementById('featured-products')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               🛍️ Shop Now
             </button>
-            <button className="cta-secondary" onClick={() => window.location.href = '/products'}>
-              📱 View All Products
+            <button 
+              className="cta-secondary" 
+              onClick={() => window.location.href = '#featured-products'}
+            >
+              📱 View Products
             </button>
           </motion.div>
         </motion.div>
@@ -216,7 +222,17 @@ const ProductsPage = () => {
               transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
             >
               <div className="trending-badge">🏆 Best Seller</div>
-              <img src={product.image} alt={product.name} />
+              <img 
+                src={product.image} 
+                alt={product.name}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="image-placeholder" style={{display: 'none'}}>
+                <span>📱</span>
+              </div>
               <div className="trending-info">
                 <h4>{product.name}</h4>
                 <p className="trending-brand">{product.brand}</p>
@@ -228,7 +244,7 @@ const ProductsPage = () => {
         </div>
       </motion.div>
 
-      {/* Customer Reviews - Enhanced */}
+      {/* Customer Reviews */}
       <motion.div 
         className="reviews-section"
         initial={{ opacity: 0 }}
