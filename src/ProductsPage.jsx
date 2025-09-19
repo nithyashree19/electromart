@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 import products from './products.jsx';
 import './ProductsPage.css';
 // Use public folder path for hero image
-import heroBackgroundImage from '/src/assets/landPage.jpg';
+import heroBackgroundImage from '/src/assets/landpage.jpg';
 
 const ProductsPage = () => {
   const [filteredProducts, setFilteredProducts] = useState(products);
