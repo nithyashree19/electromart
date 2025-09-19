@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProductCard from './ProductCard';
-import products from './products'; // Fixed: lowercase 'products'
+import products from './products.jsx'; // Fixed: lowercase 'products'
 import './ProductsPage.css';
 // Import your landing page image
 import heroBackgroundImage from './assets/landPage.jpg'; // Fixed: removed '../' since it's in src
